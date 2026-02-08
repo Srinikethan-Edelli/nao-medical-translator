@@ -1,107 +1,118 @@
-# 🏥 Healthcare Doctor–Patient Translation Web Application
+#  Healthcare Doctor–Patient Translation Web Application
 
-A full-stack web application that enables real-time multilingual communication between doctors and patients using AI-powered translation and summarization.
-
----
-
-## 🚀 Live Demo
-
-Frontend: <your-frontend-link>  
-Backend API: <your-backend-link>
+A full-stack web application that enables real-time multilingual communication between doctors and patients using AI-powered translation, audio recording, conversation logging, search, and summarization.
 
 ---
 
-## 📌 Project Overview
+##  Live Demo
 
-This project was built as part of a timed technical assignment to evaluate full-stack development, AI/LLM integration, audio handling, and deployment under time constraints.
-
-The application allows two roles — Doctor and Patient — to communicate through text or voice while the system translates messages into the selected language in near real time. Conversations are logged, searchable, and can be summarized using AI to highlight medically important points.
+Frontend: https://<your-frontend-link>  
+Backend API: https://<your-backend-link>
 
 ---
 
-## ✨ Features Implemented
+##  Project Overview
 
-- Role-based chat (Doctor / Patient)
-- AI-powered translation
-- Text chat interface
+This project was built as part of a timed take-home assignment to demonstrate:
+
+- Full-stack system design
+- AI/LLM integration
+- Audio handling
+- Conversation persistence
+- Search and summarization
+- Deployment readiness
+
+The application supports two roles — **Doctor** and **Patient** — allowing communication via text or audio while automatically translating messages into the selected target language.
+
+---
+
+##  Features Implemented
+
+- Real-time text translation
+- Doctor & Patient roles
 - Audio recording from browser
-- Audio upload and playback
-- Persistent conversation history
-- Conversation search
-- AI-generated medical summary
-- Mobile responsive UI
+- Audio playback inside chat
+- Conversation persistence
+- Keyword search with highlighting
+- AI-powered conversation summarization
+- Mobile-friendly UI
+- Deployed backend & frontend
 
 ---
 
 ## 🛠 Tech Stack
 
 ### Frontend
-- React
-- JavaScript
-- Vite
-- CSS / Tailwind
-- Web Audio API
+- React (Vite)
+- CSS
+- Axios
 
 ### Backend
 - Django
 - Django REST Framework
-
-### Database
-- SQLite / PostgreSQL
+- SQLite (local) / PostgreSQL (prod)
 
 ### AI / LLM
-- OpenAI API / Gemini API
-
-### Deployment
-- Vercel / Netlify (Frontend)
-- Render / Railway (Backend)
+- OpenAI API (translation & summary)
 
 ---
 
-## 🧩 Architecture
+##  AI Tools & Resources Used
 
-React UI → Django REST API → AI Services → Database  
-                               → Audio Storage
-
----
-
-## 🤖 AI Tools & Resources Used
-
-- ChatGPT for system design, debugging, and documentation
-- AI APIs for translation and summarization
-- Official documentation
+- OpenAI API
+- ChatGPT for debugging & UI improvements
+- Documentation & open-source references
 
 ---
 
-## ⚠️ Known Limitations & Trade-offs
+##  Known Limitations / Trade-offs
 
-- Real-time updates implemented using polling instead of WebSockets
-- Authentication not implemented
-- Audio stored using basic local or cloud storage
-- Not HIPAA compliant (demo only)
-- Limited error handling
-
----
-
-## 🔮 Future Improvements
-
-- WebSocket-based real-time chat
-- JWT authentication
-- Secure audio encryption
-- Cloud object storage (AWS S3 / GCP)
-- HIPAA-compliant workflows
-- Analytics dashboard
+- Real-time streaming translation not implemented (request-based)
+- Audio transcription basic
+- Authentication not added due to time constraints
+- Limited language set
+- Simple UI focus vs enterprise polish
 
 ---
 
-## 🧪 Running Locally
+##  Running Locally
 
-### Backend Setup
+### Backend
 
 ```bash
 cd backend
-python -m venv env
-source env/bin/activate   # Windows: env\Scripts\activate
+python -m venv venv
+venv\Scripts\activate
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
+
+
+### frontend
+
+cd frontend
+npm install
+npm run dev
+
+
+---
+
+##  Deployment
+
+Frontend deployed on Vercel.  
+Backend deployed on Render.
+
+(Links will be updated after deployment.)
+
+---
+
+##  Submission
+
+- GitHub Repository: <your-github-repo-link>
+- Live Application: <your-live-app-link>
+
+---
+
+##  Author
+
+Srinikethan Edelli
