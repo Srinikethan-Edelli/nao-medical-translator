@@ -6,10 +6,8 @@ A full-stack web application that enables real-time multilingual communication b
 
 ##  Live Demo
 
-Frontend: https://<your-frontend-link>  
-Backend API: https://<your-backend-link>
-
----
+Frontend: https://nao-medical-translator-fc2u.vercel.app  
+Backend API: https://nao-medical-translator-backend.onrender.com
 
 ##  Project Overview
 
