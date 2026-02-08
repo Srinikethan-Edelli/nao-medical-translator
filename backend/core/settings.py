@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-h!)c9q9fo-#xuea)8)z_n9w+_87!6b#cz27rl!vb-jvb9(lo02
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*", "nao-medical-translator.onrender.com"]
 
 
 # Application definition
@@ -57,6 +57,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'core.urls'
+CORS_ALLOW_ALL_ORIGINS = True
 
 TEMPLATES = [
     {
@@ -132,4 +133,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 
