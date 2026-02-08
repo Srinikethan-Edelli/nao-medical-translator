@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "./api";
+import "./index.css";
+
 
 let audioContext;
 let processor;
@@ -184,91 +186,70 @@ function App() {
 };
 
 
+
   // ----------------------------
   // UI
   // ----------------------------
   return (
-    <div style={{ padding: "20px", maxWidth: 720 }}>
-      <h1>Doctor–Patient Translator</h1>
+  <div className="page-wrapper">
+    <div className="app-shell">
 
-      {/* ROLE + LANGUAGE */}
-      <div>
-        Role:
-        <select value={role} onChange={(e) => setRole(e.target.value)}>
-          <option value="doctor">Doctor</option>
-          <option value="patient">Patient</option>
-        </select>
+      <h1 className="app-title">Doctor–Patient Translator</h1>
 
-        Target Language:
-        <select
-          value={language}
-          onChange={(e) => setLanguage(e.target.value)}
-        >
-          <option>Spanish</option>
-          <option>Hindi</option>
-          <option>French</option>
-        </select>
-      </div>
+      {/* TOP CONTROLS */}
+      <div className="top-controls">
 
-      {/* SEARCH */}
-      <div style={{ marginTop: 15 }}>
-        <input
-          placeholder="Search conversation..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
+        <div className="control-row">
+          <span>Role:</span>
+          <select value={role} onChange={(e) => setRole(e.target.value)}>
+            <option value="doctor">Doctor</option>
+            <option value="patient">Patient</option>
+          </select>
 
-        <button onClick={runSearch}>Search</button>
+          <span>Target Language:</span>
+          <select
+            value={language}
+            onChange={(e) => setLanguage(e.target.value)}
+          >
+            <option>Spanish</option>
+            <option>Hindi</option>
+            <option>French</option>
+          </select>
+        </div>
 
-        {searchTerm && searchResults.length > 0 && (
-          <div style={{ fontSize: 12, color: "gray" }}>
-            Found {searchResults.length} matches
+        <div className="control-row">
+          <input
+            placeholder="Search conversation..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <button onClick={runSearch}>Search</button>
+        </div>
+
+        <button onClick={generateSummary}>
+          {loadingSummary ? "Generating Summary..." : "📋 Generate Summary"}
+        </button>
+
+        {summary && (
+          <div className="summary-box">
+            <strong>Conversation Summary</strong>
+            <p>{summary}</p>
           </div>
         )}
+
       </div>
 
-
-      {/* SUMMARY */}
-<div style={{ marginTop: 15 }}>
-  <button onClick={generateSummary}>
-    {loadingSummary ? "Generating Summary..." : "📋 Generate Summary"}
-  </button>
-
-  {summary && (
-    <div
-      style={{
-        marginTop: 10,
-        padding: 12,
-        background: "#f3f3f3",
-        borderRadius: 6,
-      }}
-    >
-      <strong>Conversation Summary</strong>
-      <p>{summary}</p>
-    </div>
-  )}
-</div>
-
-
       {/* CHAT */}
-      <div style={{ marginTop: 20 }}>
+      <div className="chat-box">
         {messages.map((m, i) => (
-          <div
-  key={i}
-  style={{
-    marginBottom: 14,
-    padding: 10,
-    borderRadius: 10,
-    background: m.role === "doctor" ? "#e3f2fd" : "#e8f5e9",
-  }}
->
+          <div key={i} className={`message ${m.role}`}>
             <strong>{m.role}:</strong>{" "}
             {highlightText(m.original, searchTerm)}
 
             {m.translated && (
-              <div style={{ fontSize: 12, color: "gray" }}>
+              <small>
                 {highlightText(m.translated, searchTerm)}
-              </div>
+              </small>
             )}
 
             {m.audio && (
@@ -284,27 +265,30 @@ function App() {
       </div>
 
       {/* INPUT */}
-      <input
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        placeholder="Type message..."
-      />
-
-      <button onClick={sendMessage}>Send</button>
+      <div className="input-row">
+        <input
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Type message..."
+        />
+        <button onClick={sendMessage}>Send</button>
+      </div>
 
       {/* AUDIO */}
-      <div style={{ marginTop: 10 }}>
+      <div className="record-row">
         {!recording ? (
           <button onClick={startRecording}>🎙 Start Recording</button>
         ) : (
-          <button onClick={stopRecording}>⏹ Stop</button>
+          <button className="secondary-btn" onClick={stopRecording}>
+            ⏹ Stop
+          </button>
         )}
       </div>
-    </div>
-  );
-}
 
-export default App;
+    </div>
+  </div>
+);
+}
 
 // ===================================================
 // WAV ENCODER HELPERS
@@ -362,3 +346,5 @@ function writeString(view, offset, string) {
     view.setUint8(offset + i, string.charCodeAt(i));
   }
 }
+
+export default App;
